@@ -1,3 +1,4 @@
+import ConnectButton from "@/components/domain/ConnectButton";
 import { PropsWithChildren } from "react";
 
 export default function Layout({ children }: PropsWithChildren) {
@@ -8,6 +9,7 @@ export default function Layout({ children }: PropsWithChildren) {
           <a>
             <span className="mx-auto text-cyan-400">Decentralized Blog</span>
           </a>
+          <ConnectButton />
         </div>
       </header>
       <main className="container mx-auto flex-1">{children}</main>
