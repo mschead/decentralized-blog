@@ -1,5 +1,5 @@
 interface Props {
-  className: string;
+  className?: string;
 }
 
 const DEFAULT_CLASSNAME = "inline w-3 h-3 text-white animate-spin";

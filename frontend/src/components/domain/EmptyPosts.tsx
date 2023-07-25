@@ -1,4 +1,5 @@
 import Button from "@/components/common/Button";
+import MyPosts from "@/components/domain/MyPosts";
 import useCheckIfVaultExists from "@/hooks/useCheckIfVaultExists";
 import useInitVault from "@/hooks/useInitVault";
 import { toast } from "react-toastify";
@@ -39,11 +40,7 @@ const EmptyPosts = () => {
   }
 
   if (vaultData.hasVault) {
-    return (
-      <div className="prose mx-auto text-center mt-10">
-        <h3>This user contains a vault!</h3>
-      </div>
-    );
+    return <MyPosts />;
   }
 
   return (
