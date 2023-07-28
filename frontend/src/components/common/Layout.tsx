@@ -1,4 +1,3 @@
-import Button from "@/components/common/Button";
 import AddPostButton from "@/components/domain/AddPostButton";
 import ConnectButton from "@/components/domain/ConnectButton";
 import Link from "next/link";

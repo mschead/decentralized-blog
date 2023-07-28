@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "@/components/config/Providers";
 import Layout from "@/components/common/Layout";
+import CheckConnection from "@/components/config/CheckConnection";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <Layout>{children}</Layout>
+          <Layout>
+            <CheckConnection>{children}</CheckConnection>
+          </Layout>
         </Providers>
       </body>
     </html>
