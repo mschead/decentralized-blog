@@ -1,5 +1,7 @@
 import { abi } from "@/consts";
 import useContractAddress from "@/hooks/useContractAddress";
+import APP_CONSTS from "@/utils/consts";
+import { useRef, useState } from "react";
 import { useAccount, useContractRead } from "wagmi";
 
 interface Response {
@@ -19,16 +21,18 @@ interface Post {
 
 interface PostInfo {
   posts: Array<Post>;
-  hasMoreData: boolean;
+  hasMorePosts: boolean;
 }
 
 interface ContractOutput {
   posts: { cid: string; title: string; thumb: string }[];
-  hasMoreData: boolean;
+  hasMorePosts: boolean;
 }
 
 const useFetchUserPosts = (): Response => {
   const contractAddress = useContractAddress();
+  const cacheData = useRef<Array<Post>>([]);
+  const [currentPage, setCurrentPage] = useState(0);
   const { address } = useAccount();
   const { data, error, isLoading } = useContractRead<
     typeof abi,
@@ -40,8 +44,10 @@ const useFetchUserPosts = (): Response => {
     functionName: "getPosts",
     account: address,
     // offset, page size
-    args: [0, 15],
+    args: [currentPage, APP_CONSTS.PAGE_SIZE],
   });
+
+  const refetch = async (offset: number) => setCurrentPage(offset);
 
   const posts = (data?.posts ?? []).map((post) => ({
     cid: post.cid,
@@ -50,15 +56,16 @@ const useFetchUserPosts = (): Response => {
       thumb: post.thumb,
     },
   }));
+  cacheData.current.push(...posts);
 
   return {
     isLoading,
     error,
     data: {
-      posts,
-      hasMoreData: !!data?.hasMoreData,
+      posts: cacheData.current,
+      hasMorePosts: !!data?.hasMorePosts,
     },
-    refetch: () => {},
+    refetch,
   };
 };
 

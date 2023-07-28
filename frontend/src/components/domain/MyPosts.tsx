@@ -1,9 +1,20 @@
+import Button from "@/components/common/Button";
 import Card from "@/components/common/Card";
 import Loading from "@/components/common/Loading";
 import useFetchUserPosts from "@/hooks/useFetchUserPosts";
+import APP_CONSTS from "@/utils/consts";
+import { useRef } from "react";
+
+const { PAGE_SIZE } = APP_CONSTS;
 
 const MyPosts = () => {
-  const { data, error, isLoading } = useFetchUserPosts();
+  const { data, error, isLoading, refetch } = useFetchUserPosts();
+  const pageNumber = useRef(0);
+
+  const onMorePostsClick = () => {
+    pageNumber.current += 1;
+    refetch(pageNumber.current * PAGE_SIZE, PAGE_SIZE);
+  };
 
   if (isLoading) {
     return (
@@ -30,10 +41,7 @@ const MyPosts = () => {
   }
 
   return (
-    <div
-      style={{ minHeight: "75vh" }}
-      className="flex flex-col justify-between"
-    >
+    <div style={{ minHeight: "75vh" }}>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 p-4 md:p-0">
         {data.posts.map(({ cid, frontmatter }) => (
           <Card
@@ -44,6 +52,17 @@ const MyPosts = () => {
           />
         ))}
       </div>
+      {data.hasMorePosts && (
+        <div className="flex justify-center w-100 mt-4">
+          <Button
+            className="btn-primary"
+            onClick={onMorePostsClick}
+            type="button"
+          >
+            More posts
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
