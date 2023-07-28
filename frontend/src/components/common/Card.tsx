@@ -13,7 +13,13 @@ const Card = ({ cid, title, thumb }: Props) => {
   return (
     <div key={cid} className={className}>
       <Link href={`/post/${cid}`}>
-        <Image width={650} height={340} alt={title} src={thumb} />
+        <Image
+          style={{ maxWidth: 512, height: 288 }}
+          width={512}
+          height={288}
+          alt={title}
+          src={thumb}
+        />
         <h1 className="p-4">{title}</h1>
       </Link>
     </div>
