@@ -1,11 +1,10 @@
 import { contractAddresses } from "@/consts";
-import { useNetwork } from "wagmi";
+import { useChainId } from "wagmi";
 
 const HARDHAT_CHAIN_ID = 31337;
 
 const useContractAddress = (): `0x${string}` => {
-  const { chain } = useNetwork();
-  let chainId = chain?.id;
+  let chainId = useChainId();
   if (!chainId) {
     console.warn("Chain id was not set. Using hardhat as default");
     chainId = HARDHAT_CHAIN_ID;
