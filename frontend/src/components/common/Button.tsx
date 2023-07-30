@@ -8,7 +8,7 @@ const Button = ({ children, isLoading, ...rest }: Props) => {
   return (
     <button {...rest} type="button" disabled={isLoading}>
       <div className="flex items-center">
-        {isLoading && <Loading className="mr-2" />} {children}
+        {isLoading && <Loading className="mr-2 w-4 h-4" />} {children}
       </div>
     </button>
   );
