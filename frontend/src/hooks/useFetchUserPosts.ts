@@ -56,7 +56,11 @@ const useFetchUserPosts = (): Response => {
       thumb: post.thumb,
     },
   }));
-  cacheData.current.push(...posts);
+
+  const initialIndex = currentPage * APP_CONSTS.PAGE_SIZE;
+  for (let i = initialIndex; i < initialIndex + posts.length; i += 1) {
+    cacheData.current[i] = posts[i];
+  }
 
   return {
     isLoading,
