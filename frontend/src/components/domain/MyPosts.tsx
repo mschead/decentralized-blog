@@ -18,7 +18,7 @@ const MyPosts = () => {
 
   if (isLoading) {
     return (
-      <div className="mx-auto flex justify-center mt-48">
+      <div className="mx-auto flex justify-center mt-10">
         <Loading />
       </div>
     );

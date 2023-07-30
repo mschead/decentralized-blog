@@ -13,7 +13,7 @@ const PostPage = ({ cid }: Props) => {
 
   if (res.isLoading) {
     return (
-      <div className="prose mx-auto text-center mt-40">
+      <div className="prose mx-auto flex justify-center mt-10">
         <Loading />
       </div>
     );

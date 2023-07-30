@@ -2,11 +2,11 @@
 
 import Button from "@/components/common/Button";
 import useCheckIfVaultExists from "@/hooks/useCheckIfVaultExists";
+import usePersistConnect from "@/hooks/usePersistConnect";
 import Link from "next/link";
-import { useAccount } from "wagmi";
 
 export default function AddPostButton() {
-  const { isConnected } = useAccount();
+  const { isConnected } = usePersistConnect();
   const {
     data: vaultData,
     isLoading: checkVaultLoading,

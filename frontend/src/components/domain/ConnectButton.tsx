@@ -1,15 +1,10 @@
 "use client";
 
 import Button from "@/components/common/Button";
-import { useAccount, useConnect, useDisconnect } from "wagmi";
-import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+import usePersistConnect from "@/hooks/usePersistConnect";
 
 const ConnectButton = () => {
-  const { isConnected } = useAccount();
-  const { disconnect } = useDisconnect();
-  const { connect } = useConnect({
-    connector: new MetaMaskConnector(),
-  });
+  const { isConnected, connect, disconnect } = usePersistConnect();
   return !isConnected ? (
     <Button className="btn-primary" onClick={() => connect()}>
       Connect Wallet

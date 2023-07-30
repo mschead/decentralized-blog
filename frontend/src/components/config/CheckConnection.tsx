@@ -1,18 +1,27 @@
 "use client";
 
+import Loading from "@/components/common/Loading";
+import usePersistConnect from "@/hooks/usePersistConnect";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useAccount } from "wagmi";
 
 const CheckConnection = ({ children }: { children: React.ReactNode }) => {
-  const { isConnected } = useAccount();
+  const { isConnected, isCheckingConnection } = usePersistConnect();
   const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
-    if (isConnected || pathname === "/") return;
+    if (isCheckingConnection || isConnected) return;
     router.push("/");
-  }, [isConnected]);
+  }, [isConnected, isCheckingConnection]);
+
+  if (isCheckingConnection) {
+    return (
+      <div className="prose flex justify-center mx-auto mt-10">
+        <Loading />
+      </div>
+    );
+  }
 
   if (!isConnected) {
     return (

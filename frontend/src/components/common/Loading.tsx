@@ -2,7 +2,8 @@ interface Props {
   className?: string;
 }
 
-const DEFAULT_CLASSNAME = "inline w-3 h-3 text-white animate-spin";
+const DEFAULT_CLASSNAME =
+  "w-12 h-12 text-gray-200 animate-spin dark:text-cyan-600 fill-cyan-400";
 
 const Loading = ({ className }: Props) => {
   return (
