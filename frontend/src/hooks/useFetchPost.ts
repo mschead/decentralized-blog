@@ -24,6 +24,7 @@ const useFetchPost = ({ cid }: Inputs): Response => {
   useEffect(() => {
     (async function fetchFile() {
       try {
+        setLoading(true);
         const res = await ipfsStorageClient.retrieve(cid);
         const { data: frontmatter, content } = matter(res);
         setData({ title: frontmatter.title, content: content });
