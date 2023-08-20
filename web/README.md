@@ -1,3 +1,3 @@
-# Decentralized Blog (Frontend)
+# Decentralized Blog (Web)
 
 No code has been deployed yet.

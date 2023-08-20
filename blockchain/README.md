@@ -1,4 +1,4 @@
-# Decentralized Blog (Backend)
+# Decentralized Blog (Blockchain)
 
 ## 🚀 Installing
 

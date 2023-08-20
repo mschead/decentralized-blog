@@ -2,7 +2,7 @@
 
 A blog application built using web3 technologies such as Solidity and Hardhat.
 
-This repository contains the [backend](backend/README.md) and [frontend](frontend/README.md) code.
+This repository contains the [blockchain](blockchain/README.md) and [web](web/README.md) code.
 
 ## 💻 Requirements
 
